@@ -12,6 +12,7 @@ from .xmlchemy import (
     BaseOxmlElement, OptionalAttribute, OxmlElement, RequiredAttribute,
     ZeroOrMore, ZeroOrOne
 )
+import docx.shared 
 
 
 class CT_Br(BaseOxmlElement):
@@ -164,6 +165,17 @@ class CT_PPr(BaseOxmlElement):
             return
         pStyle = self.get_or_add_pStyle()
         pStyle.val = style
+
+
+        if style and style.startswith('ListNumber'):
+            level = int(style[-1])-1 if style[-1].isdigit() else 0
+            numpr = self.get_or_add_numPr()
+            ilvl = numpr.get_or_add_ilvl()
+            ilvl.val = level
+            numid = numpr.get_or_add_numId()
+            numid.val = docx.shared.NextListId
+            print('Newlist', docx.shared.NextListId, style)
+            pStyle.val="ListParagraph"
 
 
 class CT_R(BaseOxmlElement):

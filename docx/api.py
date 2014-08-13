@@ -17,6 +17,7 @@ from docx.package import Package
 from docx.parts.numbering import NumberingPart
 from docx.parts.styles import StylesPart
 from docx.shared import lazyproperty
+import docx.shared
 
 
 _thisdir = os.path.split(__file__)[0]
@@ -35,6 +36,9 @@ class Document(object):
         document_part, package = self._open(docx)
         self._document_part = document_part
         self._package = package
+
+    def new_list(self):
+        docx.shared.NextListId += 1
 
     def add_heading(self, text='', level=1):
         """

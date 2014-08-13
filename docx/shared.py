@@ -6,6 +6,32 @@ Objects shared by docx modules.
 
 from __future__ import absolute_import, print_function, unicode_literals
 
+NextListId = 0
+
+class ListId(int):
+
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(ListId, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
+    def __init__(self):
+        if ListId._instance:
+            print('listid already present', ListId._instance._id)
+            self._id = ListId._instance._id
+        else:
+            self._id = 0
+
+    def inc(self):
+        self._id += 1
+
+    def next_id(self):
+        return self._id
+
+    def __str__(self):
+        return 'List Id: %d' % self._id
 
 class Length(int):
     """
