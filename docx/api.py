@@ -23,7 +23,6 @@ import docx.shared
 _thisdir = os.path.split(__file__)[0]
 _default_docx_path = os.path.join(_thisdir, 'templates', 'default.docx')
 
-
 class Document(object):
     """
     Return a |Document| instance loaded from *docx*, where *docx* can be

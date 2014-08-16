@@ -1,8 +1,8 @@
 """
     CM1: ListNumber can be
-        1. 0 level -> ListNumber
-        2. 1 level -> ListNumber2
-        3. 2 level -> ListNumber3
+        1. 0 level -> ListParagraph
+        2. 1 level -> ListParagraph
+        3. 2 level -> ListParagraph
 """
 
 from __future__ import print_function
