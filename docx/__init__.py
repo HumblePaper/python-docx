@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 from docx.api import Document  # noqa
-from docx.html2docx import html2docx
+# from docx.html2docx import html2docx
 
 __version__ = '0.7.4'
 
