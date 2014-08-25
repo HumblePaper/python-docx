@@ -103,7 +103,7 @@ def dfs(root, depth, style):
 
         if style.para and not root.next_sibling:
             run.add_break()
-            print "Break Added", root
+            print("Break Added", root)
         return
 
     if not root.name and type(root) == bs4.element.Comment: return
