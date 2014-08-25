@@ -100,7 +100,7 @@ def dfs(root, depth, style):
         run.bold = style.bold
         run.italic = style.italic
         run.underline = style.underline
-        if style.para: run.add_break()
+        if style.para and not root.next_sibling : run.add_break()
         return
 
     if not root.name and type(root) == bs4.element.Comment: return
