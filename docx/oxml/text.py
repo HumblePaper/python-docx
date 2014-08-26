@@ -174,7 +174,6 @@ class CT_PPr(BaseOxmlElement):
             ilvl.val = level
             numid = numpr.get_or_add_numId()
             numid.val = docx.shared.NextListId
-            print('Newlist', docx.shared.NextListId, style)
             pStyle.val="ListParagraph"
 
 

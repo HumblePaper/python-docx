@@ -103,7 +103,6 @@ def dfs(root, depth, style):
 
         if style.para and not root.next_sibling:
             run.add_break()
-            print("Break Added", root)
         return
 
     if not root.name and type(root) == bs4.element.Comment: return
@@ -210,12 +209,21 @@ def getNumberingScheme(body):
 
     return NumberingScheme.get_default()
 
-def html2docx(htmlcontent):
+def html2docx(htmlcontent, organization=None):
     "Exposed API"
+    import os
+    docx_path = organization
+    _thisdir = os.path.split(__file__)[0]
+    if not organization:
+        docx_path = os.path.join(_thisdir, 'templates', 'default.docx')
+    else:
+        docx_path = os.path.join(_thisdir, 'templates', '%s_template.docx' % organization)
+        if not os.path.exists(docx_path):
+            docx_path = os.path.join(_thisdir, 'templates', 'default.docx')
 
     import docx
     global document
-    document = docx.Document()
+    document = docx.Document(docx_path)
     soup = BeautifulSoup(htmlcontent.replace('\n', ''))
     body = soup.body
     ns = getNumberingScheme(body)
